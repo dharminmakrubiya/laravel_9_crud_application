@@ -13,7 +13,7 @@
 <div class="card">
 	<div class="card-header">
 		<div class="row">
-			<div class="col col-md-6"><b>All Student</b></div>
+			<div class="col col-md-6"><b>All Student Record</b></div>
 			<div class="col col-md-6">
 				<a href="{{ route('students.create') }}" class="btn btn-success btn-sm float-end">Add</a>
 			</div>
@@ -48,7 +48,7 @@
 								@csrf
 								@method('DELETE')
 								<a href="{{ route('students.show', $row->id) }}" class="btn btn-primary btn-sm">View</a>
-								<a href="{{ route('students.edit', $row->id) }}" class="btn btn-warning btn-sm">Edit</a>
+								<a href="{{ route('students.edit', $row->id) }}" class="btn btn-dark btn-sm">Edit</a>
 								<input type="submit" class="btn btn-danger btn-sm" value="Delete" />
 							</form>
 							

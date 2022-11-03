@@ -19,6 +19,12 @@ Route::get('/', function () {
 });
 
 
+Route::get('/create',function() {
+    return view('create');
+});
+
+
+
 
 Route::resource('students', StudentController::class);
 

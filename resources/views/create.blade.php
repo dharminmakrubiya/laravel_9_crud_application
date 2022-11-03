@@ -2,16 +2,6 @@
 
 @section('content')
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     <!DOCTYPE html>
     <html lang="en">
 
@@ -42,6 +32,9 @@
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label">Student Name</label>
                                                 <input type="text" name="student_name" class="form-control" />
+                                                @if ($errors->has('student_name'))
+                                                    <span class="text-danger">{{ $errors->first('student_name') }}</span>
+                                                @endif
                                             </div>
                                         </div>
 
@@ -49,6 +42,9 @@
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label">Student Email</label>
                                                 <input type="text" name="student_email" class="form-control" />
+                                                @if ($errors->has('student_email'))
+                                                    <span class="text-danger">{{ $errors->first('student_email') }}</span>
+                                                @endif
                                             </div>
                                         </div>
 
@@ -56,6 +52,9 @@
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label">Student Phone Number</label>
                                                 <input type="text" name="student_phone" class="form-control" />
+                                                @if ($errors->has('student_phone'))
+                                                    <span class="text-danger">{{ $errors->first('student_phone') }}</span>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="d-flex flex-row align-items-center mb-4">
@@ -65,15 +64,20 @@
                                                     <option value="Male">Male</option>
                                                     <option value="Female">Female</option>
                                                 </select>
+                                                {{-- @if ($errors->has('student_gender'))
+                                                    <span class="text-danger">{{ $errors->first('student_gender') }}</span>
+                                                @endif --}}
                                             </div>
+                                           
                                         </div>
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
-                                                <label class="form-label">Student Hobbies:-</label>
+                                                <label class="form-label">Student Hobbies:-</label><br>
                                                 <input type="checkbox" name="student_hobbies[]" value="Readbooks" />
                                                 Readbooks
                                                 <input type="checkbox" name="student_hobbies[]" value="Games" /> Games
+                                                <input type="checkbox" name="student_hobbies[]" value="Cricket" /> Cricket
                                                 <input type="checkbox" name="student_hobbies[]" value="Music" /> Music<br>
                                                 @if ($errors->has('student_hobbies'))
                                                     <span class="text-danger">{{ $errors->first('student_hobbies') }}</span>
@@ -84,14 +88,21 @@
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label">Student Address</label>
-                                                <input type="text" name="student_address" class="form-control" />
+                                                <textarea type="text" name="student_address" class="form-control" /></textarea>
+                                                @if ($errors->has('student_address'))
+                                                    <span class="text-danger">{{ $errors->first('student_address') }}</span>
+                                                @endif
                                             </div>
+                                            
                                         </div>
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label">Student Image</label>
                                                 <input type="file" name="student_image" class="form-control" />
+                                                @if ($errors->has('student_image'))
+                                                    <span class="text-danger">{{ $errors->first('student_image') }}</span>
+                                                @endif
                                             </div>
                                         </div>
 
