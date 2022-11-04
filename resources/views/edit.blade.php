@@ -25,7 +25,7 @@
                                 <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
                                     <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Edit Student</p>
-
+                                    
                                     <form method="post" action="{{ route('students.update', $student->id) }}"
                                         enctype="multipart/form-data">
                                         @csrf
@@ -55,6 +55,7 @@
                                             	<label class="form-label">Student Phone Number</label>
                                                 <input type="text" name="student_phone" class="form-control"
                                                 value="{{ $student->student_phone }}" />
+                                                
 												@if ($errors->has('student_phone'))
                                                     	<span class="text-danger">{{ $errors->first('student_phone') }}</span>
                                                 @endif
@@ -69,19 +70,27 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        @php
+                                            $hobbies=json_decode($student->student_hobbies);
+                                            echo "<pre>";
+                                            print_r($hobbies);
+                                            echo "</pre>";
+                                        @endphp
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
+                                            
                                             <label class="form-label">Student Hobbies:-</label><br>
-                                                <input type="checkbox" name="student_hobbies[]" value="Readbooks" />
+                                                
+                                                <input type="checkbox" name="student_hobbies[]" value="Readbooks" {{ in_array('Readbooks',$hobbies)? 'checked':'' }}/>
                                                 Readbooks
-                                                <input type="checkbox" name="student_hobbies[]" value="Games" /> Games
-												<input type="checkbox" name="student_hobbies[]" value="Cricket" /> Cricket
-                                                <input type="checkbox" name="student_hobbies[]" value="Music" /> Music<br>
+                                                <input type="checkbox" name="student_hobbies[]" value="Games" {{ in_array('Games',$hobbies)? 'checked':'' }}/> Games
+												<input type="checkbox" name="student_hobbies[]" value="Cricket" {{ in_array('Cricket',$hobbies)? 'checked':'' }}/> Cricket
+                                                <input type="checkbox" name="student_hobbies[]" value="Music" {{ in_array('Music',$hobbies)? 'checked':'' }}/> Music<br>
 												@if ($errors->has('student_hobbies'))
                                                     	<span class="text-danger">{{ $errors->first('student_hobbies') }}</span>
                                                 @endif
-
                                             </div>
+                                            
                                         </div>
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">

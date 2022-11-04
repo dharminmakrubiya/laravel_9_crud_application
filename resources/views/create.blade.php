@@ -73,9 +73,9 @@
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
+                                                
                                                 <label class="form-label">Student Hobbies:-</label><br>
-                                                <input type="checkbox" name="student_hobbies[]" value="Readbooks" />
-                                                Readbooks
+                                                <input type="checkbox" name="student_hobbies[]" value="Readbooks" />Readbooks
                                                 <input type="checkbox" name="student_hobbies[]" value="Games" /> Games
                                                 <input type="checkbox" name="student_hobbies[]" value="Cricket" /> Cricket
                                                 <input type="checkbox" name="student_hobbies[]" value="Music" /> Music<br>
