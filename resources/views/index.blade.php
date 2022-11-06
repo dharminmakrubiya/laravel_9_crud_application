@@ -63,7 +63,7 @@
 				</tr>
 			@endif
 		</table>
-		{{-- {!! $data->links() !!} --}}
+		{!! $data->links() !!}
 	</div>
 </div>
 

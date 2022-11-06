@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('student_hobbies');
             $table->string('student_address');
             $table->string('student_image');
+            $table->string('student_password');
             $table->timestamps();
         });
     }

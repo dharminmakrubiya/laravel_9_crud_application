@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+Use Hash;
+Use Session;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
+
 
 class StudentController extends Controller
 {
@@ -15,6 +20,8 @@ class StudentController extends Controller
         return view('index', compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
+    
+
 
 
 
@@ -23,6 +30,11 @@ class StudentController extends Controller
     public function create()
     {
         return view('create');
+    }
+
+    public function login_auth()
+    {
+        return view('login');
     }
 
     
@@ -35,17 +47,13 @@ class StudentController extends Controller
             'student_gender'          =>  'required',
             'student_hobbies'       =>  'required',
             'student_address'          =>  'required',
-            'student_image'         =>  'required|image|mimes:jpg,png,jpeg,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000'
+            'student_image'         =>  'required|image|mimes:jpg,png,jpeg,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
+            'student_password'      =>  'required|string|min:8'
         ]);
 
         $file_name = time() . '.' . request()->student_image->getClientOriginalExtension();
-
-        
-
         request()->student_image->move(public_path('images'), $file_name);
-        
         $student = new Student;
-
         $student->student_name = $request->student_name;
         $student->student_email = $request->student_email;
         $student->student_phone = $request->student_phone;
@@ -53,20 +61,48 @@ class StudentController extends Controller
         $student->student_hobbies = json_encode($request->student_hobbies);
         $student->student_address = $request->student_address;
         $student->student_image = $file_name;
-
+        $student->student_password = Hash::make($request['student_password']);
         // dd($student);
         echo "<pre>";
         print_r($student);
         echo "</pre>";
         // die();
-
-
         $student->save();
-
-
         return redirect()->route('students.index')->with('success', 'Your record insert successfully.');
     }
 
+    public function login(Request $request)
+    {
+        $request->validate([
+            'student_email'         =>  'required',
+            'student_password'      =>  'required',
+        ]);
+        
+        $credentials = $request->only('student_email', 'student_password');
+        
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('index')
+                        ->with('message', 'Signed in!');
+        }
+   
+        return redirect('/login')->with('message', 'Login details are not valid!');
+    }
+
+    public function dashboard()
+    {
+        if(Auth::check()){
+            return view('dashboard');
+        }
+        return redirect('/login');
+    }
+     
+    public function signOut() {
+        Session::flush();
+        Auth::logout();
+   
+        return redirect('login');
+    }
+ 
    
     public function show(Student $student)
     {
@@ -116,9 +152,6 @@ class StudentController extends Controller
         // echo "</pre>";
         
         // dd($student);
-
-
-
         $student->save();
 
         return redirect()->route('students.index')->with('success', 'your record has been updated successfully');
@@ -131,5 +164,8 @@ class StudentController extends Controller
 
         return redirect()->route('students.index')->with('success', 'your record has been deleted successfully');
     }
+
+
+    
 }
 

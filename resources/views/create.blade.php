@@ -106,10 +106,31 @@
                                             </div>
                                         </div>
 
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <div class="form-outline flex-fill mb-0">
+                                                <label class="form-label">Student Password</label>
+                                                <input type="password" name="student_password" class="form-control" />
+                                                @if ($errors->has('student_password'))
+                                                    <span class="text-danger">{{ $errors->first('student_password') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
 
+
+
+                                        
+                                        
+                                        
                                         <div class="text">
                                             <input type="submit" class="btn btn-primary" value="Register" />
                                         </div>
+
+                                        
+                                        <div class="form-check d-flex justify-content-center mb-5">
+                                            <label class="form-check-label" for="form2Example3">
+                                                Have already an account?  <a href="{{ route('login') }}"> Login</a>
+                                            </label>
+                                          </div>
                                     </form>
                                 </div>
                                 <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
