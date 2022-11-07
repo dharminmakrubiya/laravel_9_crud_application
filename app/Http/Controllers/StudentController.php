@@ -1,6 +1,6 @@
 <?php
-
 namespace App\Http\Controllers;
+
 
 use App\Models\Student;
 Use Hash;
@@ -42,13 +42,13 @@ class StudentController extends Controller
     {
         $request->validate([
             'student_name'          =>  'required|max:120',
-            'student_email'         =>  'required|email|unique:students',
+            'email'         =>  'required|email|unique:students',
             'student_phone'          =>  'required|numeric|digits:10',
             'student_gender'          =>  'required',
             'student_hobbies'       =>  'required',
             'student_address'          =>  'required',
             'student_image'         =>  'required|image|mimes:jpg,png,jpeg,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
-            'student_password'      =>  'required|string|min:8'
+            'password'      =>  'required|string|min:8'
         ]);
 
         $file_name = time() . '.' . request()->student_image->getClientOriginalExtension();
@@ -62,6 +62,7 @@ class StudentController extends Controller
         $student->student_address = $request->student_address;
         $student->student_image = $file_name;
         $student->student_password = Hash::make($request['student_password']);
+        
         // dd($student);
         echo "<pre>";
         print_r($student);
@@ -74,24 +75,24 @@ class StudentController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'student_email'         =>  'required',
-            'student_password'      =>  'required',
+            'email'         =>  'required',
+            'password'      =>  'required',
         ]);
         
-        $credentials = $request->only('student_email', 'student_password');
+        $credentials = $request->only('email', 'password');
         
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('index')
-                        ->with('message', 'Signed in!');
+            return redirect()->intended('dashboard')
+                        ->withSuccess('You have Successfully loggedin');
         }
-   
-        return redirect('/login')->with('message', 'Login details are not valid!');
+        
+        return redirect()->route('login')->with('message', 'Login details are not valid!');
     }
 
     public function dashboard()
     {
         if(Auth::check()){
-            return view('dashboard');
+            return view('index');
         }
         return redirect('/login');
     }
@@ -168,4 +169,3 @@ class StudentController extends Controller
 
     
 }
-

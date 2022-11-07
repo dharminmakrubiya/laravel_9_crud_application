@@ -23,12 +23,13 @@
             >
               <i class="fas fa-bars"></i>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarExample01">
 
               <ul class="navbar-nav">
                 @guest
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">Login</a>
+                    <a class="nav-link" href="{{ route('login') }}" >Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('students.create') }}">Register</a>

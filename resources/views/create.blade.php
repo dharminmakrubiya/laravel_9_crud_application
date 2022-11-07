@@ -115,12 +115,7 @@
                                                 @endif
                                             </div>
                                         </div>
-
-
-
-                                        
-                                        
-                                        
+                                      
                                         <div class="text">
                                             <input type="submit" class="btn btn-primary" value="Register" />
                                         </div>

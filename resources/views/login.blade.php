@@ -66,7 +66,7 @@
                         <!-- Email input -->
                         <div class="form-outline mb-4">
                             <label class="form-label">Student Email</label>
-                            <input type="text" name="student_email" class="form-control" placeholder="Enter email"/>
+                            <input type="text" name="email" class="form-control" placeholder="Enter email"/>
                             @if ($errors->has('student_email'))
                                 <span class="text-danger">{{ $errors->first('student_email') }}</span>
                             @endif
@@ -75,7 +75,7 @@
                         <!-- Password input -->
                         <div class="form-outline mb-3">
                             <label class="form-label">Student Password</label>
-                            <input type="password" name="student_password" class="form-control" placeholder="Enter password"/>
+                            <input type="password" name="password" class="form-control" placeholder="Enter password"/>
                             @if ($errors->has('student_password'))
                                 <span class="text-danger">{{ $errors->first('student_password') }}</span>
                             @endif

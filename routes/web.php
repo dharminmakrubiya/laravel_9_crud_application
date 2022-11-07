@@ -30,14 +30,6 @@ Route::get('students/login',function() {
 
 
 
-// Route::get('login', [StudentController::class, 'login'])->name('login');
-
-// Route::post('post-login', [StudentController::class, 'postLogin'])->name('login.post'); 
-
-// Route::get('dashboard', [StudentController::class, 'dashboard']); 
-
-// Route::get('logout', [StudentController::class, 'logout'])->name('logout');
-
 Route::resource('students', StudentController::class);
 
 
