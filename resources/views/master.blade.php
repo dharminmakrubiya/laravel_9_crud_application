@@ -26,7 +26,7 @@
             
             <div class="collapse navbar-collapse" id="navbarExample01">
 
-              <ul class="navbar-nav">
+              <ul class="navbar-nav ">
                 @guest
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}" >Login</a>

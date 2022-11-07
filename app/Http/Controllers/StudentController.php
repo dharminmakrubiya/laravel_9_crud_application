@@ -86,7 +86,7 @@ class StudentController extends Controller
                         ->withSuccess('You have Successfully loggedin');
         }
         
-        return redirect()->route('login')->with('message', 'Login details are not valid!');
+        return redirect()->route('login')->with('message', 'Login details are not valid');
     }
 
     public function dashboard()

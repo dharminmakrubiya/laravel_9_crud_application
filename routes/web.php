@@ -27,12 +27,20 @@ Route::get('students/login',function() {
     return view('login');
 });
 
+Route::get('/admin',function() {
+    return view('admin_welcome');
+});
 
+// Route::get('/adminregister',function() {
+//     return view('admin.register');
+// });
+
+// Route::get('/adminlogin',function() {
+//     return view('admin.login');
+// });
 
 
 Route::resource('students', StudentController::class);
-
-
 
 Route::get('login', [StudentController::class, 'login_auth'])->name('login');
 

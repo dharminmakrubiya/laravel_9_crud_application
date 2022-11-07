@@ -26,7 +26,7 @@
     </nav>
     <div class="container"><br/><br/>
     <div class="row">
-    <p><h3>Hello :  {{ Auth::user()->name }} </h3> </p>
+    <p><h1>Hello :  {{ Auth::user()->name }} </h1> </p>
     </div>
     </div>
     @yield('content')
