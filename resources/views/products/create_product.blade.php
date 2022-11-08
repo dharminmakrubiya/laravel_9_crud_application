@@ -43,93 +43,98 @@
                                     <p class="mt-4">Add a new product.</p>
 
 
-                                    <form action="{{ route('store') }}"
-                                        class="mt-5 " method="POST" enctype="multipart/form-data">
-										
-										@csrf
-                                        
+                                    <form action="{{ route('store') }}" class="mt-5 " method="POST"
+                                        enctype="multipart/form-data">
+
+                                        @csrf
+
                                         <div class="col-6">
                                             <div class="form-group row">
                                                 <label for="title" class="col-4 col-form-label">title</label>
                                                 <div class="col-8">
                                                     <input type="text" name="title" class="form-control" id=""
                                                         placeholder="Add product title">
-														@if ($errors->has('title'))
-														<span class="text-danger">{{ $errors->first('title') }}</span>
-														@endif
+                                                    @if ($errors->has('title'))
+                                                        <span class="text-danger">{{ $errors->first('title') }}</span>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="description" class="col-4 col-form-label">Short Description</label>
+                                                <label for="description" class="col-4 col-form-label">Short
+                                                    Description</label>
                                                 <div class="col-8">
                                                     <input type="text" name="short_description" class="form-control"
                                                         id="" placeholder="short description">
-														@if ($errors->has('short_description'))
-														<span class="text-danger">{{ $errors->first('short_description') }}</span>
-														@endif
+                                                    @if ($errors->has('short_description'))
+                                                        <span
+                                                            class="text-danger">{{ $errors->first('short_description') }}</span>
+                                                    @endif
                                                 </div>
                                             </div>
 
-											<div class="form-group row">
-                                                <label for="description" class="col-4 col-form-label">Long Description</label>
+                                            <div class="form-group row">
+                                                <label for="description" class="col-4 col-form-label">Long
+                                                    Description</label>
                                                 <div class="col-8">
                                                     <input type="text" name="long_description" class="form-control"
                                                         id="" placeholder="long description">
-														@if ($errors->has('long_description'))
-														<span class="text-danger">{{ $errors->first('long_description') }}</span>
-														@endif
+                                                    @if ($errors->has('long_description'))
+                                                        <span
+                                                            class="text-danger">{{ $errors->first('long_description') }}</span>
+                                                    @endif
                                                 </div>
                                             </div>
 
-											<div class="form-group row">
+                                            <div class="form-group row">
                                                 <label for="description" class="col-4 col-form-label">Product Image</label>
                                                 <div class="col-8">
-                                                    <input type="file" name="primary_image" class="form-control"
+                                                    <input type="file" name="primary_image[]" class="form-control"
                                                         id="" placeholder="long description" multiple>
-														@if ($errors->has('primary_image'))
-														<span class="text-danger">{{ $errors->first('primary_image') }}</span>
-														@endif
+                                                    @if ($errors->has('primary_image'))
+                                                        <span
+                                                            class="text-danger">{{ $errors->first('primary_image') }}</span>
+                                                    @endif
                                                 </div>
                                             </div>
 
 
                                             <div class="form-group row">
                                                 <label for="per_unit_amount" class="col-4 col-form-label">Price
-                                                    </label>
+                                                </label>
                                                 <div class="col-8">
-                                                    <input type="text" name="price" class="form-control"
-                                                        id="" placeholder="Add Price">
-														@if ($errors->has('price'))
-														<span class="text-danger">{{ $errors->first('price') }}</span>
-														@endif
+                                                    <input type="text" name="price" class="form-control" id=""
+                                                        placeholder="Add Price">
+                                                    @if ($errors->has('price'))
+                                                        <span class="text-danger">{{ $errors->first('price') }}</span>
+                                                    @endif
                                                 </div>
                                             </div>
 
-											<div class="form-group row">
+                                            <div class="form-group row">
                                                 <label for="per_unit_amount" class="col-4 col-form-label">Categories
-                                                    </label>
+                                                </label>
                                                 <div class="col-8">
                                                     <select name="categories" class="form-control">
-														<option value="Categorie">Select Product Categorie</option>
-														<option value="Makeup">Make up</option>
-														<option value="Mobiles">Mobiles</option>
-														<option value="Jewelry">Jewelry</option>
-														<option value="Clothes">Clothes</option>
-														<option value="Food">Food</option>
-														<option value="Electronics">Electronics</option>
-													</select>
+                                                        <option value="Categorie">Select Product Categorie</option>
+                                                        <option value="Makeup">Make up</option>
+                                                        <option value="Mobiles">Mobiles</option>
+                                                        <option value="Jewelry">Jewelry</option>
+                                                        <option value="Clothes">Clothes</option>
+                                                        <option value="Food">Food</option>
+                                                        <option value="Electronics">Electronics</option>
+                                                    </select>
                                                 </div>
                                             </div>
 
-											<div class="form-group row">
+                                            <div class="form-group row">
                                                 <label for="per_unit_amount" class="col-4 col-form-label">Tags
-                                                    </label>
+                                                </label>
                                                 <div class="col-8">
-                                                    <input type="text" name="tags" class="form-control"
-                                                        id="" placeholder="tags">
-														@if ($errors->has('tags'))
-														<span class="text-danger">{{ $errors->first('tags') }}</span>
-														@endif
+                                                    <input type="text" name="tags" class="form-control" id=""
+                                                        placeholder="tags">
+                                                    @if ($errors->has('tags'))
+                                                        <span class="text-danger">{{ $errors->first('tags') }}</span>
+                                                    @endif
                                                 </div>
                                             </div>
 
@@ -137,8 +142,7 @@
 
                                         <div class="card-footer bg-white d-flex justify-content-end">
 
-                                            <a href=""
-                                                class="btn btn-warning mr-2">Cancel</a>
+                                            <a href="" class="btn btn-warning mr-2">Cancel</a>
                                             <button type="submit" class="btn btn-success">Add</button>
                                         </div>
                                     </form>
