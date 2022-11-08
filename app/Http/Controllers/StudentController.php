@@ -22,7 +22,10 @@ class StudentController extends Controller
 
     
 
-
+    public function admin_view()
+    {
+        return view('admin_welcome');
+    }
 
 
 
@@ -82,7 +85,7 @@ class StudentController extends Controller
         $credentials = $request->only('email', 'password');
         
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')
+            return redirect()->intended('admin')
                         ->withSuccess('You have Successfully loggedin');
         }
         

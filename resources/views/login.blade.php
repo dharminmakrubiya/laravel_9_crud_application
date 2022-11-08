@@ -1,6 +1,6 @@
-@extends('master')
+{{-- @extends('master') --}}
 
-@section('content')
+{{-- @section('content') --}}
 
 @if($message = Session::get('success'))
 
@@ -105,4 +105,4 @@
 </html>
 
 
-@endsection('content')
+{{-- @endsection('content') --}}

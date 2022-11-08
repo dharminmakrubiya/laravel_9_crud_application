@@ -133,6 +133,22 @@
           <i class="fas fa-th-large"></i>
         </a>
       </li>
+      @guest
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}" >Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('students.create') }}">Register</a>
+                </li>
+                @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('signout') }}">Logout</a>
+                </li>
+                @endguest
+      {{-- <li class="nav-item">
+        <a class="nav-link" href="{{ route('signout') }}">Logout</a>
+    </li> --}}
     </ul>
+    
   </nav>
   <!-- /.navbar -->

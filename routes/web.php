@@ -47,7 +47,7 @@ Route::get('login', [StudentController::class, 'login_auth'])->name('login');
 Route::post('postlogin', [StudentController::class, 'login'])->name('postlogin'); 
 
 
-Route::get('dashboard', [StudentController::class, 'index']); 
+Route::get('admin', [StudentController::class, 'admin_view']); 
 
 Route::get('signout', [StudentController::class, 'signOut'])->name('signout');
 
