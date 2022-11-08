@@ -1,37 +1,90 @@
-
-
 @extends('app')
 
 @section('content')
-    
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Products</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Dashboard v1</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
 
 
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col col-md-12 text-right">
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-        <div>
+                                <a href="{{ url('products/create_product') }}" class="btn btn-success btn-sm float-end">Add
+                                    New Product</a>
+
+                            </div>
+                            @if ($message = Session::get('success'))
+                                <div class="alert alert-success">
+                                    <p>{{ $message }}</p>
+                                </div>
+                            @endif
+                            <div class=" card-body ">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Title</th>
+                                        <th>Short Description</th>
+                                        <th>Long Description</th>
+                                        <th>Primary Image</th>
+                                        <th>Price</th>
+                                        <th>Categories</th>
+                                        <th>Tags</th>
+                                        <th>Action</th>
+                                    </tr>
+									
+                                    {{-- @foreach ($products_show as $row)
+
+                                        <tr>
+                                            <td>{{ $row->id }}</td>
+                                            <td>{{ $row->title }}</td>
+                                            <td>{{ $row->short_description }}</td>
+                                            <td>{{ $row->long_description }}</td>
+                                            <td>{{ $row->primary_image }}</td>
+                                            <td>{{ $row->price }}</td>
+                                            <td>{{ $row->categories }}</td>
+                                            <td>{{ $row->tags }}</td>
+                                            <td>
+                                                <form>
+                                                    <a class="btn btn-primary"
+                                                        href="">Edit</a>
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach --}}
+									
+                                </table>
+								
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div>
+                </div>
+            </div><!-- /.container-fluid -->
         </div>
-      </div><!-- /.container-fluid -->
-    </div>
-      
-    <!-- /.content-header -->
 
-    <!-- Main content -->
-    <section class="content">
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        {{-- <section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
@@ -611,9 +664,8 @@
         </div>
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  
+    </section> --}}
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
 @endsection

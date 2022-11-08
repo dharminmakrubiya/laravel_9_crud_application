@@ -1,37 +1,164 @@
-
-
 @extends('app')
 
 @section('content')
-    
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Products</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Products</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+                <div>
+
+                    <div class="container-fluid">
+                        <div class="animated fadeIn">
+                            <div class="content-header">
+                            </div>
+                            <!--content-header-->
 
 
+                            <style>
+                                .error {
+                                    color: red;
+                                }
+                            </style>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-        <div>
+
+                            <div class="card">
+
+                                <div class="card-body">
+                                    <div class="card-header bg-white pl-0">
+                                        <h5>Add Product</h5>
+                                    </div>
+
+                                    <p class="mt-4">Add a new product.</p>
+
+
+                                    <form action="{{ route('store') }}"
+                                        class="mt-5 " method="POST" enctype="multipart/form-data">
+										
+										@csrf
+                                        
+                                        <div class="col-6">
+                                            <div class="form-group row">
+                                                <label for="title" class="col-4 col-form-label">title</label>
+                                                <div class="col-8">
+                                                    <input type="text" name="title" class="form-control" id=""
+                                                        placeholder="Add product title">
+														@if ($errors->has('title'))
+														<span class="text-danger">{{ $errors->first('title') }}</span>
+														@endif
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="description" class="col-4 col-form-label">Short Description</label>
+                                                <div class="col-8">
+                                                    <input type="text" name="short_description" class="form-control"
+                                                        id="" placeholder="short description">
+														@if ($errors->has('short_description'))
+														<span class="text-danger">{{ $errors->first('short_description') }}</span>
+														@endif
+                                                </div>
+                                            </div>
+
+											<div class="form-group row">
+                                                <label for="description" class="col-4 col-form-label">Long Description</label>
+                                                <div class="col-8">
+                                                    <input type="text" name="long_description" class="form-control"
+                                                        id="" placeholder="long description">
+														@if ($errors->has('long_description'))
+														<span class="text-danger">{{ $errors->first('long_description') }}</span>
+														@endif
+                                                </div>
+                                            </div>
+
+											<div class="form-group row">
+                                                <label for="description" class="col-4 col-form-label">Product Image</label>
+                                                <div class="col-8">
+                                                    <input type="file" name="primary_image" class="form-control"
+                                                        id="" placeholder="long description" multiple>
+														@if ($errors->has('primary_image'))
+														<span class="text-danger">{{ $errors->first('primary_image') }}</span>
+														@endif
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <label for="per_unit_amount" class="col-4 col-form-label">Price
+                                                    </label>
+                                                <div class="col-8">
+                                                    <input type="text" name="price" class="form-control"
+                                                        id="" placeholder="Add Price">
+														@if ($errors->has('price'))
+														<span class="text-danger">{{ $errors->first('price') }}</span>
+														@endif
+                                                </div>
+                                            </div>
+
+											<div class="form-group row">
+                                                <label for="per_unit_amount" class="col-4 col-form-label">Categories
+                                                    </label>
+                                                <div class="col-8">
+                                                    <select name="categories" class="form-control">
+														<option value="Categorie">Select Product Categorie</option>
+														<option value="Makeup">Make up</option>
+														<option value="Mobiles">Mobiles</option>
+														<option value="Jewelry">Jewelry</option>
+														<option value="Clothes">Clothes</option>
+														<option value="Food">Food</option>
+														<option value="Electronics">Electronics</option>
+													</select>
+                                                </div>
+                                            </div>
+
+											<div class="form-group row">
+                                                <label for="per_unit_amount" class="col-4 col-form-label">Tags
+                                                    </label>
+                                                <div class="col-8">
+                                                    <input type="text" name="tags" class="form-control"
+                                                        id="" placeholder="tags">
+														@if ($errors->has('tags'))
+														<span class="text-danger">{{ $errors->first('tags') }}</span>
+														@endif
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="card-footer bg-white d-flex justify-content-end">
+
+                                            <a href=""
+                                                class="btn btn-warning mr-2">Cancel</a>
+                                            <button type="submit" class="btn btn-success">Add</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--animated-->
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+            <div>
+
+            </div>
         </div>
-      </div><!-- /.container-fluid -->
-    </div>
-      
-    <!-- /.content-header -->
 
-    <!-- Main content -->
-    <section class="content">
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        {{-- <section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
@@ -611,9 +738,8 @@
         </div>
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  
+    </section> --}}
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
 @endsection

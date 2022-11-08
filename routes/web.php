@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SendEmailController;
 /*
 |--------------------------------------------------------------------------
@@ -31,15 +32,6 @@ Route::get('/admin',function() {
     return view('admin_welcome');
 });
 
-// Route::get('/adminregister',function() {
-//     return view('admin.register');
-// });
-
-// Route::get('/adminlogin',function() {
-//     return view('admin.login');
-// });
-
-
 Route::resource('students', StudentController::class);
 
 Route::get('login', [StudentController::class, 'login_auth'])->name('login');
@@ -47,7 +39,18 @@ Route::get('login', [StudentController::class, 'login_auth'])->name('login');
 Route::post('postlogin', [StudentController::class, 'login'])->name('postlogin'); 
 
 
-Route::get('admin', [StudentController::class, 'admin_view']); 
+// Route::get('admin', [StudentController::class, 'admin_view']); 
 
 Route::get('signout', [StudentController::class, 'signOut'])->name('signout');
 
+Route::controller(App\Http\Controllers\ProductController::class)->group(function () {
+
+    Route::get('/products','index_products');
+
+    Route::get('/products/create_product','create_product');
+
+    Route::post('store', [ProductController::class, 'store'])->name('store'); 
+
+    
+
+});

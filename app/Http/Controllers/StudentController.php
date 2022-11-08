@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Student;
+
 Use Hash;
 Use Session;
 use Illuminate\Support\Facades\Auth;
@@ -58,13 +59,13 @@ class StudentController extends Controller
         request()->student_image->move(public_path('images'), $file_name);
         $student = new Student;
         $student->student_name = $request->student_name;
-        $student->student_email = $request->student_email;
+        $student->email = $request->email;
         $student->student_phone = $request->student_phone;
         $student->student_gender = $request->student_gender;
         $student->student_hobbies = json_encode($request->student_hobbies);
         $student->student_address = $request->student_address;
         $student->student_image = $file_name;
-        $student->student_password = Hash::make($request['student_password']);
+        $student->password = Hash::make($request['password']);
         
         // dd($student);
         echo "<pre>";
@@ -72,7 +73,9 @@ class StudentController extends Controller
         echo "</pre>";
         // die();
         $student->save();
-        return redirect()->route('students.index')->with('success', 'Your record insert successfully.');
+        // return redirect()->route('students.index')->with('success', 'Your record insert successfully.');
+        return redirect()->intended('admin')
+                        ->withSuccess('Your account Successfully created');
     }
 
     public function login(Request $request)

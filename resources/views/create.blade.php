@@ -41,9 +41,9 @@
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label">Student Email</label>
-                                                <input type="text" name="student_email" class="form-control" />
-                                                @if ($errors->has('student_email'))
-                                                    <span class="text-danger">{{ $errors->first('student_email') }}</span>
+                                                <input type="text" name="email" class="form-control" />
+                                                @if ($errors->has('email'))
+                                                    <span class="text-danger">{{ $errors->first('email') }}</span>
                                                 @endif
                                             </div>
                                         </div>
@@ -109,9 +109,9 @@
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label">Student Password</label>
-                                                <input type="password" name="student_password" class="form-control" />
-                                                @if ($errors->has('student_password'))
-                                                    <span class="text-danger">{{ $errors->first('student_password') }}</span>
+                                                <input type="password" name="password" class="form-control" />
+                                                @if ($errors->has('password'))
+                                                    <span class="text-danger">{{ $errors->first('password') }}</span>
                                                 @endif
                                             </div>
                                         </div>

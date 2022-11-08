@@ -15,13 +15,13 @@ class Student extends Authenticatable
     protected $fillable = 
     [
         'student_name',
-        'student_email',
+        'email',
         'student_phone' ,
         'student_gender',
         'student_hobbies' ,
         'student_address' ,
         'student_image',
-        'student_password'
+        'password'
     ];
     /**
      * The attributes that should be hidden for serialization.
