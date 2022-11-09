@@ -34,12 +34,10 @@ Route::get('/admin',function() {
 
 Route::resource('students', StudentController::class);
 
+
 Route::get('login', [StudentController::class, 'login_auth'])->name('login');
 
 Route::post('postlogin', [StudentController::class, 'login'])->name('postlogin'); 
-
-
-// Route::get('admin', [StudentController::class, 'admin_view']); 
 
 Route::get('signout', [StudentController::class, 'signOut'])->name('signout');
 
@@ -49,9 +47,9 @@ Route::controller(App\Http\Controllers\ProductController::class)->group(function
 
     Route::get('/products/create_product','create_product');
 
-    Route::get('products/edit_product','edit');
+    Route::get('/products/{row}/edit_product','edit');
 
-    Route::get('products/show_product','show_product');
+    Route::get('products/{row}/show_product','show_product');
 
     Route::post('store', [ProductController::class, 'store'])->name('store'); 
 
@@ -59,7 +57,12 @@ Route::controller(App\Http\Controllers\ProductController::class)->group(function
 
     Route::post('products/edit_product', [ProductController::class, 'update'])->name('update'); 
 
-    Route::post('destroy', [ProductController::class, 'destroy'])->name('destroy'); 
+    Route::post('/destroy/{row}', [ProductController::class, 'destroy'])->name('destroy'); 
 
 });
+
+
+
+
+
 

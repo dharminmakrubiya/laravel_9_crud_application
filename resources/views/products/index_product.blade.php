@@ -47,7 +47,7 @@
                                         <th>Action</th>
                                     </tr>
 									
-                                    @foreach($product as $row)
+                                    @foreach($products as $row)
 
                                         <tr>
                                             <td>{{ $row->id }}</td>
@@ -59,12 +59,12 @@
                                             <td>{{ $row->categories }}</td>
                                             <td>{{ $row->tags }}</td>
                                             <td>
-                                                <form method="post" action=" {{ route('destroy', $row->id) }} ">
+                                                <form method="post" action=" {{ url('/destroy' . '/' .$row->id) }} ">
                                                   @csrf
                                                   @method('DELETE')
-                                                    <a href="{{ url('products/show_product', $row->id) }}" class="btn btn-success btn-sm">View</a>
+                                                    <a href="{{ url('/products/'.$row->id.'/show_product') }}" class="btn btn-success btn-sm">View</a>
                                                     <a class="btn btn-primary"
-                                                    href="{{ url('products/edit_product',$row->id) }}">Edit</a>
+                                                    href="{{ url('products/'.$row->id.'/edit_product') }}">Edit</a>
                                                     <button type="submit" class="btn btn-danger">Delete</button>
                                                 </form>
                                             </td>

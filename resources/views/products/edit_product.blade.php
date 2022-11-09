@@ -46,14 +46,15 @@
                                     <form  action="{{ route('update') }}" class="mt-5 " method="POST"
                                         enctype="multipart/form-data">
 
-                                        @csrf
-                                        @method('PUT')
+                                        {{ csrf_field() }}
+                                        {{ method_field('PUT') }}
+                                        
                                         <div class="col-6">
                                             <div class="form-group row">
                                                 <label for="title" class="col-4 col-form-label">title</label>
                                                 <div class="col-8">
                                                     <input type="text" name="title" class="form-control" id=""
-                                                    >
+                                                    value="{{ $products->title }}">
                                                     @if ($errors->has('title'))
                                                         <span class="text-danger">{{ $errors->first('title') }}</span>
                                                     @endif
@@ -64,7 +65,7 @@
                                                     Description</label>
                                                 <div class="col-8">
                                                     <input type="text" name="short_description" class="form-control"
-                                                        id="" placeholder="short description">
+                                                        id="" placeholder="short description" value="{{$products->short_description}}">
                                                     @if ($errors->has('short_description'))
                                                         <span
                                                             class="text-danger">{{ $errors->first('short_description') }}</span>
@@ -77,7 +78,7 @@
                                                     Description</label>
                                                 <div class="col-8">
                                                     <input type="text" name="long_description" class="form-control"
-                                                        id="" placeholder="long description">
+                                                        id="" placeholder="long description" value="{{$products->long_description}}">
                                                     @if ($errors->has('long_description'))
                                                         <span
                                                             class="text-danger">{{ $errors->first('long_description') }}</span>
@@ -89,7 +90,7 @@
                                                 <label for="description" class="col-4 col-form-label">Product Image</label>
                                                 <div class="col-8">
                                                     <input type="file" name="primary_image[]" class="form-control"
-                                                        id="" placeholder="long description" multiple>
+                                                        id="" placeholder="long description"  multiple>
                                                     @if ($errors->has('primary_image'))
                                                         <span
                                                             class="text-danger">{{ $errors->first('primary_image') }}</span>
@@ -103,7 +104,7 @@
                                                 </label>
                                                 <div class="col-8">
                                                     <input type="text" name="price" class="form-control" id=""
-                                                        placeholder="Add Price">
+                                                        placeholder="Add Price" value="{{$products->price}}">
                                                     @if ($errors->has('price'))
                                                         <span class="text-danger">{{ $errors->first('price') }}</span>
                                                     @endif
@@ -131,7 +132,7 @@
                                                 </label>
                                                 <div class="col-8">
                                                     <input type="text" name="tags" class="form-control" id=""
-                                                        placeholder="tags">
+                                                        placeholder="tags" value="{{$products->tags}}">
                                                     @if ($errors->has('tags'))
                                                         <span class="text-danger">{{ $errors->first('tags') }}</span>
                                                     @endif

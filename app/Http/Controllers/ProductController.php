@@ -15,8 +15,8 @@ class ProductController extends Controller
 
     public function index_products()
     {
-        $product = Product::all();
-        return view('products.index_product', compact('product'));
+        $products = Product::all();
+        return view('products.index_product', compact('products'));
     }
 
     public function create_product()
@@ -48,12 +48,6 @@ class ProductController extends Controller
       $file= new Product();
       $file->primary_image=json_encode($data);
       
-        // echo '<pre>';
-        // print_r($request->all());
-        // die();
-
-        // $file_name = time() . '.' . request()->primary_image->getClientOriginalExtension();
-        // request()->primary_image->move(public_path('public/images'), $file_name);
         $products = new Product;
         $products->title = $request->title;
         $products->short_description = $request->short_description;
@@ -70,23 +64,28 @@ class ProductController extends Controller
         // die();
         $products->save();
         
+        
         return redirect()->intended('admin')->with('success', 'Your product added successfully.');
         // return redirect()->intended('admin')
         //                 ->withSuccess('Your product Successfully added');
     }
 
+    
 
-    public function show_product(Product $product)
-    {
-        return view('products/show_product',compact('product'));
+    
+    public function show_product($id ,Product $products)
+    {   
+        $products = Product::find($id);
+        return view('products/show_product',compact('products')); 
     }
-   
-    public function edit(Product $product)
+    
+    public function edit($id,Product $products)
     {
-        return view('products/edit_product',compact('product'));
+        $products = Product::find($id);
+        return view('products/edit_product',compact('products'));
     }
 
-    public function update(Request $request , Product $product)
+    public function update($id, Request $request , Product $products)
     {
         $request->validate([
             'title'                     => 'required',
@@ -97,15 +96,15 @@ class ProductController extends Controller
             'categories'         => 'required',
             'tags'         => 'required',
         ]);
-        $product->fill($request->post())->save();
+        $products->fill($request->post())->save();
 
         return view('products/index_product')->with('success', 'your product has been updated successfully');
     }
 
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        $products->delete();
-
+        $products->destroy($id);
+        
         return redirect()->intended('admin')->with('success', 'your record has been deleted successfully');
         // return redirect()->route('index')->with('success', 'your record has been deleted successfully');
     }

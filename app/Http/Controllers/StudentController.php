@@ -113,10 +113,12 @@ class StudentController extends Controller
    
     public function show(Student $student)
     {
+        
         return view('show', compact('student'));
     }
 
    
+    
     public function edit(Student $student)
     {
         return view('edit', compact('student'));

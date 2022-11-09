@@ -30,16 +30,19 @@
                                 .error {
                                     color: red;
                                 }
-                                
                             </style>
 
-
+                            {{-- @php
+                                echo "<pre>";
+                                print_r($products);
+                                dd($products);
+                            @endphp --}}
                             <div class="card">
                                 <div class="card-header">
                                     <div class="row">
-                                        <div class="col col-md-6 "><b>Product Details</b></div>
+                                        <div class="col col-md-6"><b>Product Details</b></div>
                                         <div class="col col-md-6">
-                                            <a href="{{ url('products') }}" class="btn btn-primary btn-sm ">View
+                                            <a href="{{ url('products') }}" class="btn btn-primary btn-sm float-end">View
                                                 All Products</a>
                                         </div>
                                     </div>
@@ -48,19 +51,19 @@
                                     <div class="row mb-3">
                                         <label class="col-sm-2 col-label-form"><b>Product Title</b></label>
                                         <div class="col-sm-10">
-                                            {{-- {{$product->title }} --}}
+                                            {{$products->title }}
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label class="col-sm-2 col-label-form"><b>Short Description</b></label>
                                         <div class="col-sm-10">
-                                            {{-- {{$product->short_description }} --}}
+                                            {{$products->short_description }}
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label class="col-sm-2 col-label-form"><b>Long Description</b></label>
                                         <div class="col-sm-10">
-                                            {{-- {{ $product->long_description }} --}}
+                                            {{ $products->long_description }}
                                         </div>
                                     </div>
 
@@ -73,19 +76,19 @@
                                     <div class="row mb-4">
                                         <label class="col-sm-2 col-label-form"><b>Price</b></label>
                                         <div class="col-sm-10">
-                                            {{-- {{ $product->price }} --}}
+                                            {{ $products->price }}
                                         </div>
                                     </div>
                                     <div class="row mb-4">
                                         <label class="col-sm-2 col-label-form"><b>Product Categories</b></label>
                                         <div class="col-sm-10">
-                                            {{-- {{ $product->categories }} --}}
+                                            {{ $products->categories }}
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label class="col-sm-2 col-label-form"><b>Product Tags</b></label>
                                         <div class="col-sm-10">
-                                            {{-- {{ $product->tags }} --}}
+                                            {{ $products->tags }}
                                         </div>
                                     </div>
                                 </div>
