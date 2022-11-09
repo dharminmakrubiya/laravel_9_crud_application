@@ -6,16 +6,17 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()  
-    {  
-        
-          
-    }  
+    public function index()
+    {
+        // $product = Product::all();
+        // return view('products.index_product', compact('product'));
+    }
 
 
     public function index_products()
     {
-        return view('products.index_product');
+        $product = Product::all();
+        return view('products.index_product', compact('product'));
     }
 
     public function create_product()
@@ -45,7 +46,7 @@ class ProductController extends Controller
           }
       }
       $file= new Product();
-      $file->name=json_encode($data);
+      $file->primary_image=json_encode($data);
       
         // echo '<pre>';
         // print_r($request->all());
@@ -74,6 +75,38 @@ class ProductController extends Controller
         //                 ->withSuccess('Your product Successfully added');
     }
 
+
+    public function show_product(Product $product)
+    {
+        return view('products/show_product',compact('product'));
+    }
    
-   
+    public function edit(Product $product)
+    {
+        return view('products/edit_product',compact('product'));
+    }
+
+    public function update(Request $request , Product $product)
+    {
+        $request->validate([
+            'title'                     => 'required',
+            'short_description'         => 'required',
+            'long_description'         => 'required',
+            'primary_image'         => 'required',
+            'price'         => 'required',
+            'categories'         => 'required',
+            'tags'         => 'required',
+        ]);
+        $product->fill($request->post())->save();
+
+        return view('products/index_product')->with('success', 'your product has been updated successfully');
+    }
+
+    public function destroy(Request $request)
+    {
+        $products->delete();
+
+        return redirect()->intended('admin')->with('success', 'your record has been deleted successfully');
+        // return redirect()->route('index')->with('success', 'your record has been deleted successfully');
+    }
 }

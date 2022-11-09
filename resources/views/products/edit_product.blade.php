@@ -8,80 +8,155 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Products</h1>
+                        <h1 class="m-0">Edit Products</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard v1</li>
+                            <li class="breadcrumb-item active">Edit Product</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
+                <div>
 
-
-                <div class="card">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col col-md-12 text-right">
-
-                                <a href="{{ url('products/create_product') }}" class="btn btn-success btn-sm float-end">Add
-                                    New Product</a>
-
+                    <div class="container-fluid">
+                        <div class="animated fadeIn">
+                            <div class="content-header">
                             </div>
-                            @if ($message = Session::get('success'))
-                                <div class="alert alert-success">
-                                    <p>{{ $message }}</p>
-                                </div>
-                            @endif
-                            <div class=" card-body ">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Title</th>
-                                        <th>Short Description</th>
-                                        <th>Long Description</th>
-                                        {{-- <th>Primary Image</th> --}}
-                                        <th>Price</th>
-                                        <th>Categories</th>
-                                        <th>Tags</th>
-                                        <th>Action</th>
-                                    </tr>
-									
-                                    @foreach($product as $row)
+                            <!--content-header-->
 
-                                        <tr>
-                                            <td>{{ $row->id }}</td>
-                                            <td>{{ $row->title }}</td>
-                                            <td>{{ $row->short_description }}</td>
-                                            <td>{{ $row->long_description }}</td>
-                                            {{-- <td>{{ $row->primary_image }}</td> --}}
-                                            <td>{{ $row->price }}</td>
-                                            <td>{{ $row->categories }}</td>
-                                            <td>{{ $row->tags }}</td>
-                                            <td>
-                                                <form method="post" action=" {{ route('destroy', $row->id) }} ">
-                                                  @csrf
-                                                  @method('DELETE')
-                                                    <a href="{{ url('products/show_product', $row->id) }}" class="btn btn-success btn-sm">View</a>
-                                                    <a class="btn btn-primary"
-                                                    href="{{ url('products/edit_product',$row->id) }}">Edit</a>
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach 
-									
-                                </table>
-								
+
+                            <style>
+                                .error {
+                                    color: red;
+                                }
+                            </style>
+
+
+                            <div class="card">
+
+                                <div class="card-body">
+                                    <div class="card-header bg-white pl-0">
+                                        <h5>Edit Product</h5>
+                                    </div>
+
+                                    <p class="mt-4">Edit a product.</p>
+
+
+                                    <form  action="{{ route('update') }}" class="mt-5 " method="POST"
+                                        enctype="multipart/form-data">
+
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="col-6">
+                                            <div class="form-group row">
+                                                <label for="title" class="col-4 col-form-label">title</label>
+                                                <div class="col-8">
+                                                    <input type="text" name="title" class="form-control" id=""
+                                                    >
+                                                    @if ($errors->has('title'))
+                                                        <span class="text-danger">{{ $errors->first('title') }}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="description" class="col-4 col-form-label">Short
+                                                    Description</label>
+                                                <div class="col-8">
+                                                    <input type="text" name="short_description" class="form-control"
+                                                        id="" placeholder="short description">
+                                                    @if ($errors->has('short_description'))
+                                                        <span
+                                                            class="text-danger">{{ $errors->first('short_description') }}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="description" class="col-4 col-form-label">Long
+                                                    Description</label>
+                                                <div class="col-8">
+                                                    <input type="text" name="long_description" class="form-control"
+                                                        id="" placeholder="long description">
+                                                    @if ($errors->has('long_description'))
+                                                        <span
+                                                            class="text-danger">{{ $errors->first('long_description') }}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="description" class="col-4 col-form-label">Product Image</label>
+                                                <div class="col-8">
+                                                    <input type="file" name="primary_image[]" class="form-control"
+                                                        id="" placeholder="long description" multiple>
+                                                    @if ($errors->has('primary_image'))
+                                                        <span
+                                                            class="text-danger">{{ $errors->first('primary_image') }}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <label for="per_unit_amount" class="col-4 col-form-label">Price
+                                                </label>
+                                                <div class="col-8">
+                                                    <input type="text" name="price" class="form-control" id=""
+                                                        placeholder="Add Price">
+                                                    @if ($errors->has('price'))
+                                                        <span class="text-danger">{{ $errors->first('price') }}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="per_unit_amount" class="col-4 col-form-label">Categories
+                                                </label>
+                                                <div class="col-8">
+                                                    <select name="categories" class="form-control">
+                                                        <option value="Categorie">Select Product Categorie</option>
+                                                        <option value="Makeup">Make up</option>
+                                                        <option value="Mobiles">Mobiles</option>
+                                                        <option value="Jewelry">Jewelry</option>
+                                                        <option value="Clothes">Clothes</option>
+                                                        <option value="Food">Food</option>
+                                                        <option value="Electronics">Electronics</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="per_unit_amount" class="col-4 col-form-label">Tags
+                                                </label>
+                                                <div class="col-8">
+                                                    <input type="text" name="tags" class="form-control" id=""
+                                                        placeholder="tags">
+                                                    @if ($errors->has('tags'))
+                                                        <span class="text-danger">{{ $errors->first('tags') }}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="card-footer bg-white d-flex justify-content-end">
+
+                                            <a href="" class="btn btn-warning mr-2">Cancel</a>
+                                            <button type="submit" class="btn btn-success">Update</button>
+                                        </div>
+                                    </form>
+
+                                </div>
                             </div>
                         </div>
+                        <!--animated-->
                     </div>
                 </div>
-
-
-                <div>
-                </div>
             </div><!-- /.container-fluid -->
+            <div>
+
+            </div>
         </div>
 
         <!-- /.content-header -->

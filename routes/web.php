@@ -49,8 +49,17 @@ Route::controller(App\Http\Controllers\ProductController::class)->group(function
 
     Route::get('/products/create_product','create_product');
 
+    Route::get('products/edit_product','edit');
+
+    Route::get('products/show_product','show_product');
+
     Route::post('store', [ProductController::class, 'store'])->name('store'); 
 
-    
+    Route::post('update', [ProductController::class, 'update'])->name('update'); 
+
+    Route::post('products/edit_product', [ProductController::class, 'update'])->name('update'); 
+
+    Route::post('destroy', [ProductController::class, 'destroy'])->name('destroy'); 
 
 });
+
