@@ -53,11 +53,11 @@ Route::controller(App\Http\Controllers\ProductController::class)->group(function
 
     Route::post('store', [ProductController::class, 'store'])->name('store'); 
 
-    Route::post('update', [ProductController::class, 'update'])->name('update'); 
+    // Route::put('update', [ProductController::class, 'update'])->name('update'); 
 
-    Route::post('products/edit_product', [ProductController::class, 'update'])->name('update'); 
+    Route::put('update/{row}', [ProductController::class, 'update'])->name('update'); 
 
-    Route::post('/destroy/{row}', [ProductController::class, 'destroy'])->name('destroy'); 
+    Route::delete('/destroy/{row}', [ProductController::class, 'destroy'])->name('destroy'); 
 
 });
 

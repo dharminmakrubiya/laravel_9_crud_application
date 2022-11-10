@@ -28,9 +28,9 @@
                                     New Product</a>
 
                             </div>
-                            @if ($message = Session::get('success'))
+                            @if ($messages = Session::get('messages'))
                                 <div class="alert alert-success">
-                                    <p>{{ $message }}</p>
+                                    {{ $messages }}
                                 </div>
                             @endif
                             <div class=" card-body ">
@@ -46,9 +46,8 @@
                                         <th>Tags</th>
                                         <th>Action</th>
                                     </tr>
-									
-                                    @foreach($products as $row)
 
+                                    @foreach ($products_all as $row)
                                         <tr>
                                             <td>{{ $row->id }}</td>
                                             <td>{{ $row->title }}</td>
@@ -59,20 +58,21 @@
                                             <td>{{ $row->categories }}</td>
                                             <td>{{ $row->tags }}</td>
                                             <td>
-                                                <form method="post" action=" {{ url('/destroy' . '/' .$row->id) }} ">
-                                                  @csrf
-                                                  @method('DELETE')
-                                                    <a href="{{ url('/products/'.$row->id.'/show_product') }}" class="btn btn-success btn-sm">View</a>
+                                                <form method="post" action=" {{ url('/destroy' . '/' . $row->id) }} ">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <a href="{{ url('/products/' . $row->id . '/show_product') }}"
+                                                        class="btn btn-success btn-sm">View</a>
                                                     <a class="btn btn-primary"
-                                                    href="{{ url('products/'.$row->id.'/edit_product') }}">Edit</a>
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                        href="{{ url('products/' . $row->id . '/edit_product') }}">Edit</a>
+                                                    <button type="submit" class="btn btn-danger show_confirm">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>
-                                    @endforeach 
-									
+                                    @endforeach
+
                                 </table>
-								
+
                             </div>
                         </div>
                     </div>

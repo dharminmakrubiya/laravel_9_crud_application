@@ -43,7 +43,7 @@
                                     <p class="mt-4">Edit a product.</p>
 
 
-                                    <form  action="{{ route('update') }}" class="mt-5 " method="POST"
+                                    <form  action="{{ url('update/'.$products->id) }}" class="mt-5 " method="POST"
                                         enctype="multipart/form-data">
 
                                         {{ csrf_field() }}

@@ -9,6 +9,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Product extends Model
 {
+    
     use HasFactory;
     protected $table = 'products';
 
@@ -22,4 +23,6 @@ class Product extends Model
         'categories',
         'tags',
     ];
+
+    
 }

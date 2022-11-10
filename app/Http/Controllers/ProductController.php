@@ -6,17 +6,14 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
-    {
-        // $product = Product::all();
-        // return view('products.index_product', compact('product'));
-    }
-
 
     public function index_products()
     {
-        $products = Product::all();
-        return view('products.index_product', compact('products'));
+
+        $products_all = Product::all();
+        return view('products.index_product', compact('products_all'));
+
+        session()->flash('messages', $messages);
     }
 
     public function create_product()
@@ -85,27 +82,24 @@ class ProductController extends Controller
         return view('products/edit_product',compact('products'));
     }
 
-    public function update($id, Request $request , Product $products)
+    public function update($id, Request $request, Product $products)
     {
-        $request->validate([
-            'title'                     => 'required',
-            'short_description'         => 'required',
-            'long_description'         => 'required',
-            'primary_image'         => 'required',
-            'price'         => 'required',
-            'categories'         => 'required',
-            'tags'         => 'required',
-        ]);
-        $products->fill($request->post())->save();
-
-        return view('products/index_product')->with('success', 'your product has been updated successfully');
+        
+        $products = Product::find($id);
+        $input = $request->all();
+        $products->update($input);
+        
+        // echo "<pre>";
+        // print_r($products);
+        // dd($products);
+        
+        return redirect()->intended('products')->with('success', 'your product has been updated successfully');
+        // return view('products/index_product')->with('success', 'your product has been updated successfully');
     }
-
+    
     public function destroy($id)
     {
-        $products->destroy($id);
-        
-        return redirect()->intended('admin')->with('success', 'your record has been deleted successfully');
-        // return redirect()->route('index')->with('success', 'your record has been deleted successfully');
+        Product::destroy($id);
+        return redirect()->intended('products')->with('success', 'your record has been deleted successfully');
     }
 }
