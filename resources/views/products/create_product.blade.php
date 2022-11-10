@@ -45,7 +45,9 @@
 
                                     <form action="{{ route('store') }}" class="mt-5 " method="POST"
                                         enctype="multipart/form-data">
-
+                                        {{-- @php
+                                            $nameErr;
+                                        @endphp --}}
                                         @csrf
 
                                         <div class="col-6">
@@ -56,9 +58,24 @@
                                                         placeholder="Add product title">
                                                     @if ($errors->has('title'))
                                                         <span class="text-danger">{{ $errors->first('title') }}</span>
+                                                        {{-- <span class="error">* @php echo $nameErr; @endphp> </span>   --}}
                                                     @endif
                                                 </div>
                                             </div>
+
+
+                                            {{-- @php
+                                                if (empty($_POST['title'])) {
+                                                    $nameErr = 'Product Name is required';
+                                                } else {
+                                                    $name = input_data($_POST['title']);
+                                                    // check if name only contains letters and whitespace
+                                                    if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
+                                                        $nameErr = 'Only alphabets and white space are allowed';
+                                                    }
+                                                }
+                                            @endphp --}}
+
                                             <div class="form-group row">
                                                 <label for="description" class="col-4 col-form-label">Short
                                                     Description</label>

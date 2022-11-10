@@ -43,7 +43,7 @@
                                     <p class="mt-4">Edit a product.</p>
 
 
-                                    <form  action="{{ url('update/'.$products->id) }}" class="mt-5 " method="POST"
+                                    <form  action="{{ url('products/update/'.$products->id) }}" class="mt-5 " method="POST"
                                         enctype="multipart/form-data">
 
                                         {{ csrf_field() }}
@@ -144,7 +144,7 @@
                                         <div class="card-footer bg-white d-flex justify-content-end">
 
                                             <a href="" class="btn btn-warning mr-2">Cancel</a>
-                                            <button type="submit" class="btn btn-success">Update</button>
+                                            <button type="submit" class="btn btn-success show_view">Update</button>
                                         </div>
                                     </form>
 

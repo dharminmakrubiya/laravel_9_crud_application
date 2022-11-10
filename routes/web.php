@@ -45,19 +45,19 @@ Route::controller(App\Http\Controllers\ProductController::class)->group(function
 
     Route::get('/products','index_products');
 
-    Route::get('/products/create_product','create_product');
+    Route::get('/products/create','create_product');
 
-    Route::get('/products/{row}/edit_product','edit');
+    Route::get('/products/{row}/edit','edit');
 
-    Route::get('products/{row}/show_product','show_product');
+    Route::get('products/{row}/show','show_product');
 
     Route::post('store', [ProductController::class, 'store'])->name('store'); 
 
     // Route::put('update', [ProductController::class, 'update'])->name('update'); 
 
-    Route::put('update/{row}', [ProductController::class, 'update'])->name('update'); 
+    Route::put('products/update/{row}', [ProductController::class, 'update'])->name('update'); 
 
-    Route::delete('/destroy/{row}', [ProductController::class, 'destroy'])->name('destroy'); 
+    Route::delete('products/destroy/{row}', [ProductController::class, 'destroy'])->name('destroy'); 
 
 });
 

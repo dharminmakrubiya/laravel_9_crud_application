@@ -23,8 +23,8 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col col-md-12 text-right">
-
-                                <a href="{{ url('products/create_product') }}" class="btn btn-success btn-sm float-end">Add
+                              
+                                <a href="{{ url('products/create') }}" class="btn btn-success btn-sm float-end">Add
                                     New Product</a>
 
                             </div>
@@ -58,19 +58,18 @@
                                             <td>{{ $row->categories }}</td>
                                             <td>{{ $row->tags }}</td>
                                             <td>
-                                                <form method="post" action=" {{ url('/destroy' . '/' . $row->id) }} ">
+                                                <form method="post" action=" {{ url('products/destroy' . '/' . $row->id) }} ">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <a href="{{ url('/products/' . $row->id . '/show_product') }}"
-                                                        class="btn btn-success btn-sm">View</a>
-                                                    <a class="btn btn-primary"
-                                                        href="{{ url('products/' . $row->id . '/edit_product') }}">Edit</a>
-                                                    <button type="submit" class="btn btn-danger show_confirm">Delete</button>
+                                                    <a href="{{ url('/products/' . $row->id . '/show') }}"
+                                                        class="btn btn-dark btn-sm">View</a>
+                                                    <a class="btn btn-sm btn-primary"
+                                                        href="{{ url('products/' . $row->id . '/edit') }}">Edit</a>
+                                                    <button type="submit" class="btn btn-sm btn-danger show_confirm">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>
                                     @endforeach
-
                                 </table>
 
                             </div>
