@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+Use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,10 +16,10 @@ class ProductImage extends Model
         'path',
         'product_id',
     ];
-
-
-    public function product_images() 
-		{
-			return $this->hasMany('products_images', 'id');
-		}
+    public function productImage()
+    {
+        return $this->hasMany(ProductImage::class,'product_id','id');
+    }
+    
+   
 }

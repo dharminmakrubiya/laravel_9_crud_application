@@ -43,18 +43,18 @@
                                     <p class="mt-4">Edit a product.</p>
 
 
-                                    <form  action="{{ url('products/update/'.$products->id) }}" class="mt-5 " method="POST"
-                                        enctype="multipart/form-data">
+                                    <form action="{{ url('products/update/' . $products->id) }}" class="mt-5 "
+                                        method="POST" enctype="multipart/form-data">
 
                                         {{ csrf_field() }}
                                         {{ method_field('PUT') }}
-                                        
+
                                         <div class="col-6">
                                             <div class="form-group row">
                                                 <label for="title" class="col-4 col-form-label">title</label>
                                                 <div class="col-8">
                                                     <input type="text" name="title" class="form-control" id=""
-                                                    value="{{ $products->title }}">
+                                                        value="{{ $products->title }}">
                                                     @if ($errors->has('title'))
                                                         <span class="text-danger">{{ $errors->first('title') }}</span>
                                                     @endif
@@ -65,7 +65,8 @@
                                                     Description</label>
                                                 <div class="col-8">
                                                     <input type="text" name="short_description" class="form-control"
-                                                        id="" placeholder="short description" value="{{$products->short_description}}">
+                                                        id="" placeholder="short description"
+                                                        value="{{ $products->short_description }}">
                                                     @if ($errors->has('short_description'))
                                                         <span
                                                             class="text-danger">{{ $errors->first('short_description') }}</span>
@@ -78,7 +79,8 @@
                                                     Description</label>
                                                 <div class="col-8">
                                                     <input type="text" name="long_description" class="form-control"
-                                                        id="" placeholder="long description" value="{{$products->long_description}}">
+                                                        id="" placeholder="long description"
+                                                        value="{{ $products->long_description }}">
                                                     @if ($errors->has('long_description'))
                                                         <span
                                                             class="text-danger">{{ $errors->first('long_description') }}</span>
@@ -90,7 +92,7 @@
                                                 <label for="description" class="col-4 col-form-label">Primary Image</label>
                                                 <div class="col-8">
                                                     <input type="file" name="primary_image" class="form-control"
-                                                        id="" placeholder="long description"  multiple>
+                                                        id="" placeholder="long description" multiple>
                                                     @if ($errors->has('primary_image'))
                                                         <span
                                                             class="text-danger">{{ $errors->first('primary_image') }}</span>
@@ -99,31 +101,38 @@
                                             </div>
 
                                             <div class="form-group row">
-                                              <label for="description" class="col-4 col-form-label">Product Images</label>
-                                              <div class="col-8">
-                                                  <input type="file" name="files[]" class="form-control"
-                                                      id="" placeholder="long description" multiple>
-                                                  @if ($errors->has('files'))
-                                                      <span
-                                                          class="text-danger">{{ $errors->first('files') }}</span>
-                                                  @endif
+                                                <label for="description" class="col-4 col-form-label">Product Images</label>
+                                                <div class="col-8">
+                                                    <input type="file" name="files[]" class="form-control" id=""
+                                                        placeholder="long description" multiple>
+                                                    @if ($errors->has('files'))
+                                                        <span class="text-danger">{{ $errors->first('files') }}</span>
+                                                    @endif
 
-                                                
-                                                      {{-- @foreach (json_decode($images->files)as $picture)
-                                                    <img src="{{ asset('/product_images/'.$picture) }}" />
-                                                  @endforeach     --}}
-                                                  
-                                                  
 
-                                              </div>
-                                          </div>
+                                                    @php
+                                                    echo "<pre>";
+                                                        print_r($products->toArray());
+                                                    @endphp
+                                                    @foreach ($products as $key => $item)
+                                                      
+                                                      
+                                                      
+                                                        <img src="{{ asset('/product_images/' . $item) }}"
+                                                            width="75" />
+                                                    @endforeach
+
+
+
+                                                </div>
+                                            </div>
 
                                             <div class="form-group row">
                                                 <label for="per_unit_amount" class="col-4 col-form-label">Price
                                                 </label>
                                                 <div class="col-8">
                                                     <input type="text" name="price" class="form-control" id=""
-                                                        placeholder="Add Price" value="{{$products->price}}">
+                                                        placeholder="Add Price" value="{{ $products->price }}">
                                                     @if ($errors->has('price'))
                                                         <span class="text-danger">{{ $errors->first('price') }}</span>
                                                     @endif
@@ -150,8 +159,8 @@
                                                 <label for="per_unit_amount" class="col-4 col-form-label">Tags
                                                 </label>
                                                 <div class="col-8">
-                                                    <input type="text" name="tags" class="form-control" id=""
-                                                        placeholder="tags" value="{{$products->tags}}">
+                                                    <input type="text" name="tags" class="form-control"
+                                                        id="" placeholder="tags" value="{{ $products->tags }}">
                                                     @if ($errors->has('tags'))
                                                         <span class="text-danger">{{ $errors->first('tags') }}</span>
                                                     @endif

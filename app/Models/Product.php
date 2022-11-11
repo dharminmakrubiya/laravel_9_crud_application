@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\ProductImage;
+
 
 class Product extends Model
 {
@@ -23,10 +25,10 @@ class Product extends Model
         'categories',
         'tags',
     ];
-    
-    public function product() 
-		{
-			return $this->belongsTo('products', 'id');
-		}
+    public function ProductImg()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+   
     
 }

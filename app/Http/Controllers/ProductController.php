@@ -34,7 +34,7 @@ class ProductController extends Controller
             'categories'         => 'required',
             'tags'         => 'required',
         ]);
-        
+
         $file_name = time() . '.' . request()->primary_image->getClientOriginalExtension();
         request()->primary_image->move(public_path('images'), $file_name);
         $products = new Product;
@@ -53,18 +53,29 @@ class ProductController extends Controller
         // die();
         $products->save();
 
+        // $files = [];
+        // if ($request->file('files')){
+        //     foreach($request->file('files') as $image)
+        //     {
+        //         $imageName = $image->getClientOriginalName();
+        //         $image -> move(public_path().'/product_images/',$imageName);
+        //         $fileNames[]=$imageName;
+        //     }
+        // }
+        // $images = json_encode($fileNames);
+        // ProductImage::create(['path'=>$images]);
         $files = [];
         if ($request->file('files')){
-            foreach($request->file('files') as $image)
+            foreach($request->file('files') as $key => $file)
             {
-                $imageName = $image->getClientOriginalName();
-                $image -> move(public_path().'/product_images/',$imageName);
-                $fileNames[]=$imageName;
+                $fileName = time().rand(1,99).'.'.$file->extension();  
+                $file->move(public_path('product_images'), $fileName);
+                $files[]['path'] = $fileName;
             }
         }
-        $images = json_encode($fileNames);
-        ProductImage::create(['path'=>$images]);
-
+        foreach ($files as $key => $file) {
+            ProductImage::create($file);
+        }
 
         
         
@@ -84,7 +95,12 @@ class ProductController extends Controller
     
     public function edit($id,Product $products)
     {
-        $products = Product::find($id);
+
+        
+        $products = Product::with('productImg')->find($id);
+        // echo "<pre>";
+        // print_r($products->toArray());
+        // die();
         return view('products/edit_product',compact('products'));
     }
 
