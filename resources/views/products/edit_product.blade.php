@@ -87,9 +87,9 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label for="description" class="col-4 col-form-label">Product Image</label>
+                                                <label for="description" class="col-4 col-form-label">Primary Image</label>
                                                 <div class="col-8">
-                                                    <input type="file" name="primary_image[]" class="form-control"
+                                                    <input type="file" name="primary_image" class="form-control"
                                                         id="" placeholder="long description"  multiple>
                                                     @if ($errors->has('primary_image'))
                                                         <span
@@ -98,6 +98,25 @@
                                                 </div>
                                             </div>
 
+                                            <div class="form-group row">
+                                              <label for="description" class="col-4 col-form-label">Product Images</label>
+                                              <div class="col-8">
+                                                  <input type="file" name="files[]" class="form-control"
+                                                      id="" placeholder="long description" multiple>
+                                                  @if ($errors->has('files'))
+                                                      <span
+                                                          class="text-danger">{{ $errors->first('files') }}</span>
+                                                  @endif
+
+                                                
+                                                      {{-- @foreach (json_decode($images->files)as $picture)
+                                                    <img src="{{ asset('/product_images/'.$picture) }}" />
+                                                  @endforeach     --}}
+                                                  
+                                                  
+
+                                              </div>
+                                          </div>
 
                                             <div class="form-group row">
                                                 <label for="per_unit_amount" class="col-4 col-form-label">Price

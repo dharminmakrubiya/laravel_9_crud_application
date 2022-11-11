@@ -23,6 +23,10 @@ class Product extends Model
         'categories',
         'tags',
     ];
-
+    
+    public function product() 
+		{
+			return $this->belongsTo('products', 'id');
+		}
     
 }

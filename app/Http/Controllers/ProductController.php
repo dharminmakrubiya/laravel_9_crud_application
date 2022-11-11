@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -28,28 +29,19 @@ class ProductController extends Controller
             'short_description'         => 'required',
             'long_description'         => 'required',
             'primary_image'         => 'required',
+            'files'        => 'required',
             'price'         => 'required',
             'categories'         => 'required',
             'tags'         => 'required',
         ]);
-
-        if ($request->hasFile('primary_image')) {
-          $image = $request->file('primary_image');
-          foreach ($image as $files) {
-              $destinationPath = 'public/images/';
-              $file_name = time() . "." . $files->getClientOriginalExtension();
-              $files->move($destinationPath, $file_name);
-              $data[] = $file_name;
-          }
-      }
-      $file= new Product();
-      $file->primary_image=json_encode($data);
-      
+        
+        $file_name = time() . '.' . request()->primary_image->getClientOriginalExtension();
+        request()->primary_image->move(public_path('images'), $file_name);
         $products = new Product;
         $products->title = $request->title;
         $products->short_description = $request->short_description;
         $products->long_description = $request->long_description;
-        $products->primary_image =$file;
+        $products->primary_image =$file_name;
         $products->price = $request->price;
         $products->categories = $request->categories;
         $products->tags = $request->tags;
@@ -60,6 +52,20 @@ class ProductController extends Controller
         // echo "</pre>";
         // die();
         $products->save();
+
+        $files = [];
+        if ($request->file('files')){
+            foreach($request->file('files') as $image)
+            {
+                $imageName = $image->getClientOriginalName();
+                $image -> move(public_path().'/product_images/',$imageName);
+                $fileNames[]=$imageName;
+            }
+        }
+        $images = json_encode($fileNames);
+        ProductImage::create(['path'=>$images]);
+
+
         
         
         return redirect()->intended('admin')->with('success', 'Your product added successfully.');

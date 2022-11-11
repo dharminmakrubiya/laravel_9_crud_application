@@ -103,16 +103,30 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label for="description" class="col-4 col-form-label">Product Image</label>
+                                                <label for="description" class="col-4 col-form-label">Primary Image</label>
                                                 <div class="col-8">
-                                                    <input type="file" name="primary_image[]" class="form-control"
-                                                        id="" placeholder="long description" multiple>
+                                                    <input type="file" name="primary_image" class="form-control"
+                                                        id="" placeholder="long description" >
                                                     @if ($errors->has('primary_image'))
                                                         <span
                                                             class="text-danger">{{ $errors->first('primary_image') }}</span>
                                                     @endif
                                                 </div>
                                             </div>
+
+
+                                            <div class="form-group row">
+                                              <label for="description" class="col-4 col-form-label">Product Images</label>
+                                              <div class="col-8">
+                                                  <input type="file" name="files[]" class="form-control"
+                                                      id="" placeholder="long description" multiple>
+                                                  @if ($errors->has('files'))
+                                                      <span
+                                                          class="text-danger">{{ $errors->first('files') }}</span>
+                                                  @endif
+                                              </div>
+                                          </div>
+                                            
 
 
                                             <div class="form-group row">

@@ -37,10 +37,10 @@
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>Id</th>
+                                        <th>Primary Image</th>
                                         <th>Title</th>
                                         <th>Short Description</th>
                                         <th>Long Description</th>
-                                        {{-- <th>Primary Image</th> --}}
                                         <th>Price</th>
                                         <th>Categories</th>
                                         <th>Tags</th>
@@ -50,10 +50,14 @@
                                     @foreach ($products_all as $row)
                                         <tr>
                                             <td>{{ $row->id }}</td>
+                                            
+                                            {{-- @foreach ($products_all->primary_image as $item) --}}
+                                                <td><img src="{{ asset('images/' . $row->primary_image) }}" width="75" /></td>
+                                            {{-- @endforeach --}}
+                                              
                                             <td>{{ $row->title }}</td>
                                             <td>{{ $row->short_description }}</td>
                                             <td>{{ $row->long_description }}</td>
-                                            {{-- <td>{{ $row->primary_image }}</td> --}}
                                             <td>{{ $row->price }}</td>
                                             <td>{{ $row->categories }}</td>
                                             <td>{{ $row->tags }}</td>
@@ -61,17 +65,18 @@
                                                 <form method="post" action=" {{ url('products/destroy' . '/' . $row->id) }} ">
                                                     @csrf
                                                     @method('DELETE')
+                                                    
                                                     <a href="{{ url('/products/' . $row->id . '/show') }}"
-                                                        class="btn btn-dark btn-sm">View</a>
-                                                    <a class="btn btn-sm btn-primary"
-                                                        href="{{ url('products/' . $row->id . '/edit') }}">Edit</a>
-                                                    <button type="submit" class="btn btn-sm btn-danger show_confirm">Delete</button>
+                                                        class="btn btn-dark btn-sm fa-solid fa-eye mb-2"></a> {{--view--}}
+                                                    <a  class="btn fa-solid fa-pen-to-square btn-sm btn-primary mb-2"
+                                                        href="{{ url('products/' . $row->id . '/edit') }}"></a>{{--edit--}}
+                                                    <button type="submit" <i class=" btn-sm btn-danger show_confirm fa-solid fa-trash"></i></button> {{--delete--}}
                                                 </form>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </table>
-
+                                
                             </div>
                         </div>
                     </div>

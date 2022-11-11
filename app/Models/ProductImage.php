@@ -12,6 +12,14 @@ class ProductImage extends Model
 
     protected $fillable = 
     [
-        
+        'id',
+        'path',
+        'product_id',
     ];
+
+
+    public function product_images() 
+		{
+			return $this->hasMany('products_images', 'id');
+		}
 }
