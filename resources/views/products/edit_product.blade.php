@@ -1,7 +1,8 @@
 @extends('app')
 
 @section('content')
-    <!-- Content Wrapper. Contains page content -->
+
+    <!-- 0Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -110,20 +111,28 @@
                                                     @endif
 
 
-                                                    @php
-                                                    echo "<pre>";
-                                                        print_r($products->toArray());
-                                                    @endphp
-                                                    @foreach ($products as $key => $item)
-                                                      
-                                                      
-                                                      
-                                                        <img src="{{ asset('/product_images/' . $item) }}"
-                                                            width="75" />
-                                                    @endforeach
 
 
+                                                    <?php 
 
+
+                                                    $titles = DB::table('products_images')
+                                                                ->where('product_id','32')
+                                                                ->pluck('path');
+                                                    
+                                                    
+                                                    for ($i=0; $i <count($titles);$i++){
+                                                    ?>
+                                                    
+                                                    
+                                                    <img src="{{url('/product_images/'.$titles[$i])}}" width="75" alt="Image"/>
+                                                    <?php
+                                                        
+                                                    }?>
+                                                    
+                                                    
+                                                    
+                                                    
                                                 </div>
                                             </div>
 
