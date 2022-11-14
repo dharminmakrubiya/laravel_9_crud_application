@@ -141,12 +141,12 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group row">
+                                            {{-- <div class="form-group row">
                                                 <label for="per_unit_amount" class="col-4 col-form-label">Categories
                                                 </label>
                                                 <div class="col-8">
-                                                    <select name="categories" class="form-control">
-                                                        <option value="Categorie">Select Product Categorie</option>
+                                                    <select name="categories" id="" class="form-control">
+                                                        <option value="Categorie">Select Product Categories</option>
                                                         <option value="Makeup">Make up</option>
                                                         <option value="Mobiles">Mobiles</option>
                                                         <option value="Jewelry">Jewelry</option>
@@ -155,7 +155,28 @@
                                                         <option value="Electronics">Electronics</option>
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> --}}
+
+
+                                            <div class="form-group row">
+                                              <label for="per_unit_amount" class="col-4 col-form-label">Categories
+                                              </label>
+                                              <div class="col-8">
+                                                @php
+                                                  $categories = DB::table('categories')->get();                                                    
+                                                @endphp
+
+                                                  <select name="categories" class="form-control">
+                                                    <option value="Categories">Select Product Categories</option>
+                                                      @foreach ($categories as $row)
+                                                          <option value="{{$row->id}}">{{$row->name}}</option>
+                                                      @endforeach
+                                                  </select>
+                                              </div>
+                                          </div>
+
+                                          
+                                            
 
                                             <div class="form-group row">
                                                 <label for="per_unit_amount" class="col-4 col-form-label">Tags
@@ -169,7 +190,34 @@
                                                 </div>
                                             </div>
 
+                                            
+
+                                            <div class="form-group row">
+                                              <label for="per_unit_amount" class="col-4 col-form-label">Tags
+                                              </label>
+                                              <div class="col-8">
+
+                                                @php
+                                                $tags = DB::table('tags')->get();                                                    
+                                                @endphp
+                                                  <select multiple placeholder="Choose Tags" data-allow-clear="1" class="form-control">
+                                                    
+                                                    @foreach ($tags as $row)
+                                                      <option value="{{$row->id}}">{{$row->name}}</option>
+                                                    @endforeach
+                                                      
+                                                      {{-- <option value="Makeup">Make up</option>
+                                                      <option value="Mobiles">Mobiles</option>
+                                                      <option value="Jewelry">Jewelry</option>
+                                                      <option value="Clothes">Clothes</option>
+                                                      <option value="Food">Food</option>
+                                                      <option value="Electronics">Electronics</option> --}}
+                                                  </select>
+                                              </div>
+                                          </div>
+
                                         </div>
+
 
                                         <div class="card-footer bg-white d-flex justify-content-end">
 
