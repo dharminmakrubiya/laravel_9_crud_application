@@ -81,7 +81,7 @@ class CategoriesController extends Controller
      * @param  \App\Models\Categories  $categories
      * @return \Illuminate\Http\Response
      */
-    public function update($id,Request $request, Categories $categories)
+    public function update_categories($id,Request $request, Categories $categories)
     {
         $categories = Categories::find($id);
 
@@ -101,7 +101,7 @@ class CategoriesController extends Controller
      * @param  \App\Models\Categories  $categories
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy_categories($id)
     {
         Categories::destroy($id);
         return redirect()->intended('categories')->with('success', 'your categories has been deleted successfully');

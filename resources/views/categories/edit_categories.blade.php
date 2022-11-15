@@ -41,7 +41,7 @@
 
                                     <p class="mt-4">Edit Categories</p>
 
-                                    <form action="{{ url('products/categories/update/' . $categories->id) }}" class="mt-5 " method="POST" enctype="multipart/form-data">
+                                    <form action="{{ url('products/categories/update_categories/' . $categories->id) }}" class="mt-5 " method="POST" enctype="multipart/form-data">
 
                                        @csrf
                                         @method('PUT')

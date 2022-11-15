@@ -78,7 +78,7 @@ class TagsController extends Controller
      * @param  \App\Models\Tags  $tags
      * @return \Illuminate\Http\Response
      */
-    public function update($id,Request $request, Tags $tags)
+    public function update_tags($id,Request $request, Tags $tags)
     {
         $tags = Tags::find($id);
 

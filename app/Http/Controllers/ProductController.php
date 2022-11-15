@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
+use App\Models\Tags;
 use App\Models\ProductImage;
+use App\Models\ProductTags;
 use Illuminate\Http\Request;
 use DB;
 class ProductController extends Controller
@@ -10,7 +12,7 @@ class ProductController extends Controller
 
     public function index_products()
     {
-        
+
         $products_all = Product::all();
         return view('products.index_product', compact('products_all'));
 
@@ -24,6 +26,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        
         $request->validate([
             'title'                     => 'required',
             'short_description'         => 'required',
@@ -34,7 +37,7 @@ class ProductController extends Controller
             'categories'         => 'required',
             'tags'         => 'required',
         ]);
-
+        $input = $request->all();
         $file_name = time() . '.' . request()->primary_image->getClientOriginalExtension();
         request()->primary_image->move(public_path('images'), $file_name);
         $products = new Product;
@@ -44,26 +47,15 @@ class ProductController extends Controller
         $products->primary_image =$file_name;
         $products->price = $request->price;
         $products->categories = $request->categories;
-        $products->tags = $request->tags;
         
-        // dd($products);
-        // echo "<pre>";
-        // print_r($products);
-        // echo "</pre>";
-        // die();
-        $products->save();
+       
+        $tags = $input['tags'];
 
-        // $files = [];
-        // if ($request->file('files')){
-        //     foreach($request->file('files') as $image)
-        //     {
-        //         $imageName = $image->getClientOriginalName();
-        //         $image -> move(public_path().'/product_images/',$imageName);
-        //         $fileNames[]=$imageName;
-        //     }
-        // }
-        // $images = json_encode($fileNames);
-        // ProductImage::create(['path'=>$images]);
+        // echo "<pre>";
+        // print_r($tags);
+        // die();
+
+        $products->save();
         $files = [];
         if ($request->file('files')){
             foreach($request->file('files') as $key => $file)
@@ -76,9 +68,17 @@ class ProductController extends Controller
         foreach ($files as $key => $file) {
             ProductImage::create($file);
         }
+        
+        if ($tags) {
+            foreach ($tags as $key => $tag)  {
 
-        
-        
+                echo $key;
+                // ProductTags::create($tags[$key]);
+
+            }
+
+        }
+      
         return redirect()->intended('admin')->with('success', 'Your product added successfully.');
         // return redirect()->intended('admin')
         //                 ->withSuccess('Your product Successfully added');

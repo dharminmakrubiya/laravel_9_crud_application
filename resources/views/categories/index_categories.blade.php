@@ -48,7 +48,7 @@
                                             <td>{{ $row->name }}</td>
                                             <td>{{ $row->status }}</td>
                                             <td>
-                                                <form method="post" action=" {{ url('products/categories/destroy' . '/' . $row->id) }} ">
+                                                <form method="post" action=" {{ url('products/categories/destroy_categories' . '/' . $row->id) }} ">
                                                     @csrf
                                                     @method('DELETE')
                                                     

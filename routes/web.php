@@ -78,9 +78,9 @@ Route::controller(App\Http\Controllers\CategoriesController::class)->group(funct
 
     Route::get('/products/categories/{row}/edit','edit');
 
-    Route::put('products/categories/update/{row}', [CategoriesController::class, 'update'])->name('update'); 
+    Route::put('products/categories/update_categories/{row}', [CategoriesController::class, 'update_categories'])->name('update_categories'); 
 
-    Route::delete('products/categories/destroy/{row}', [CategoriesController::class, 'destroy'])->name('destroy'); 
+    Route::delete('products/categories/destroy_categories/{row}', [CategoriesController::class, 'destroy_categories'])->name('destroy_categories'); 
 });
 
 
@@ -97,8 +97,9 @@ Route::controller(App\Http\Controllers\TagsController::class)->group(function ()
 
     Route::get('/products/tags/{row}/edit','edit');
 
-    Route::put('products/tags/update/{row}', [TagsController::class, 'update'])->name('update'); 
+    Route::put('products/tags/update_tags/{row}', [TagsController::class, 'update_tags'])->name('update_tags'); 
 
     Route::delete('products/tags/destroy/{row}', [TagsController::class, 'destroy'])->name('destroy'); 
+
 });
 

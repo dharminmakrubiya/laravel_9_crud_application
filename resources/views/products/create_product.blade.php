@@ -178,17 +178,17 @@
                                           
                                             
 
-                                            <div class="form-group row">
+                                            {{-- <div class="form-group row">
                                                 <label for="per_unit_amount" class="col-4 col-form-label">Tags
                                                 </label>
                                                 <div class="col-8">
-                                                    <input type="text" name="tags" class="form-control" id=""
+                                                    <input type="text" name="tags[]" class="form-control" id=""
                                                         placeholder="tags">
                                                     @if ($errors->has('tags'))
                                                         <span class="text-danger">{{ $errors->first('tags') }}</span>
                                                     @endif
                                                 </div>
-                                            </div>
+                                            </div> --}}
 
                                             
 
@@ -200,7 +200,7 @@
                                                 @php
                                                 $tags = DB::table('tags')->get();                                                    
                                                 @endphp
-                                                  <select multiple placeholder="Choose Tags" data-allow-clear="1" class="form-control">
+                                                  <select multiple placeholder="Choose Tags"  name="tags[]" data-allow-clear="1" class="form-control">
                                                     
                                                     @foreach ($tags as $row)
                                                       <option value="{{$row->id}}">{{$row->name}}</option>
@@ -216,7 +216,7 @@
                                               </div>
                                           </div>
 
-                                        </div>
+                                        </div>  
 
 
                                         <div class="card-footer bg-white d-flex justify-content-end">

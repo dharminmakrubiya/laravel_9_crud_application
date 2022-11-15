@@ -41,7 +41,7 @@
 
                                     <p class="mt-4">Edit Tags</p>
 
-                                    <form action="{{ url('products/tags/update/' . $tags->id) }}" class="mt-5 " method="POST" enctype="multipart/form-data">
+                                    <form action="{{ url('products/tags/update_tags/' . $tags->id) }}" class="mt-5 " method="POST" enctype="multipart/form-data">
 
                                        @csrf
                                         @method('PUT')

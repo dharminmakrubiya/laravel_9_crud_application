@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('primary_image');
             $table->mediumInteger('price');
             $table->string('categories');
-            $table->string('tags');
+            $table->longText('tags');
             $table->timestamps();
         });
     }
