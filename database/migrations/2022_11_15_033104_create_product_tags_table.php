@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('product_tags', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('tag_id')->unsigned()->index()->nullable();
-            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
-            // $table->longText('tags');
+            $table->foreign('tag_id')->references('id')->on('tags');
+            $table->bigInteger('product_id')->unsigned()->index()->nullable();
+            $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

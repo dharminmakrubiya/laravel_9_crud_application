@@ -71,12 +71,15 @@ class ProductController extends Controller
         
         if ($tags) {
             foreach ($tags as $key => $tag)  {
-
-                echo $key;
-                // ProductTags::create($tags[$key]);
-
+                $data = $request->validate([
+                    'tags' => 'required',
+                ]);
+                $data['tags'] = implode(",", $request->tags);
+                $post = ProductTags::create($data);
             }
-
+        // echo "<pre>";
+        // print_r($data);    
+        // die();
         }
       
         return redirect()->intended('admin')->with('success', 'Your product added successfully.');
@@ -89,7 +92,10 @@ class ProductController extends Controller
     
     public function show_product($id ,Product $products)
     {   
-        $products = Product::find($id);
+        $products = Product::with(['ProductTags'])->find($id);
+        echo "<pre>";
+        print_r($products->toArray());
+        die();
         return view('products/show_product',compact('products')); 
     }
     

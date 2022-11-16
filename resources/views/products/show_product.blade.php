@@ -88,7 +88,22 @@
                                     <div class="row mb-3">
                                         <label class="col-sm-2 col-label-form"><b>Product Tags</b></label>
                                         <div class="col-sm-10">
-                                            {{ $products->tags }}
+
+                                            <?php
+                                            $titles = DB::table('product_tags')
+                                                        ->where('product_id','97')
+                                                        ->pluck('tag_id');
+                                            
+                                            
+                                            
+                                            for ($i=0; $i <count($titles);$i++){
+                                            ?>    
+                                                <option value="{{$titles[$i]}}"></option>
+                                             <?php
+                                                 
+                                             }?>
+
+                                            {{-- {{ $products->tags }} --}}
                                         </div>
                                     </div>
                                 </div>

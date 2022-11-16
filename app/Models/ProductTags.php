@@ -15,6 +15,14 @@ class ProductTags extends Model
 
     protected $fillable = 
     [
-        'tags',    
+        'id',
+        'tag_id',
+        'product_id',
     ];
+
+    public function productTags() {
+
+        return $this->belongsTo('Products');
+
+    }
 }
