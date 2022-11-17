@@ -40,6 +40,6 @@ class Product extends Model
         return $this->hasmany(Product::class);
     }
     
-    
+   
 
 }

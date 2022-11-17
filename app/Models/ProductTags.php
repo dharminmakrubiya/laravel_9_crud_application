@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-Use App\Models\Tag;
+Use App\Models\Tags;
 Use App\Models\Product;
 
 
@@ -20,9 +20,14 @@ class ProductTags extends Model
         'product_id',
     ];
 
-    public function productTags() {
+    public function product() {
 
-        return $this->belongsTo('Products');
+        return $this->belongsTo('App\Models\Product');
+
+    }
+    public function tags() {
+
+        return $this->belongsTo('App\Models\Tags');
 
     }
 }

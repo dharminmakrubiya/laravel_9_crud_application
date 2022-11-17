@@ -92,10 +92,10 @@ class ProductController extends Controller
     
     public function show_product($id ,Product $products)
     {   
-        $products = Product::with(['ProductTags'])->find($id);
+        $products = Product::with('ProductTags.product')->find($id);
         echo "<pre>";
-        print_r($products->toArray());
-        die();
+        print_r($products->toArray()); 
+        dd($products);
         return view('products/show_product',compact('products')); 
     }
     

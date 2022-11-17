@@ -16,9 +16,10 @@ class Tags extends Model
         'status',
     ];
 
-    public function Tags() {
+  
+    public function tag() {
 
-        return $this->belongsTo('Products');
+        return $this->belongsTo('App\Models\Tags');
+
     }
-    
 }
