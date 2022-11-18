@@ -35,11 +35,7 @@ class Product extends Model
         return $this->hasMany(ProductTags::class);
     }
 
-    public function Product()
-    {
-        return $this->hasmany(Product::class);
-    }
     
-   
+    
 
 }

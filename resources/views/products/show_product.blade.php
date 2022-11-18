@@ -31,12 +31,18 @@
                                     color: red;
                                 }
                             </style>
+                            
+                            @php
+                                // echo "<pre>";
+                                // print_r($products->toArray()); 
+                                // die(); 
+                                
+                            @endphp
+                             
+                               
 
-                            {{-- @php
-                                echo "<pre>";
-                                print_r($products);
-                                dd($products);
-                            @endphp --}}
+                            
+                            
                             <div class="card">
                                 <div class="card-header">
                                     <div class="row">
@@ -88,20 +94,9 @@
                                     <div class="row mb-3">
                                         <label class="col-sm-2 col-label-form"><b>Product Tags</b></label>
                                         <div class="col-sm-10">
-
-                                            <?php
-                                            $titles = DB::table('product_tags')
-                                                        ->where('product_id','97')
-                                                        ->pluck('tag_id');
-                                            
-                                            
-                                            
-                                            for ($i=0; $i <count($titles);$i++){
-                                            ?>    
-                                                <option value="{{$titles[$i]}}"></option>
-                                             <?php
-                                                 
-                                             }?>
+                                            @foreach ($products->ProductTags as $tag)
+                                                {{$tag->tags->name}}<br>
+                                            @endforeach
 
                                             {{-- {{ $products->tags }} --}}
                                         </div>

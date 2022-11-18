@@ -59,8 +59,10 @@
                                             <td>{{ $row->short_description }}</td>
                                             <td>{{ $row->long_description }}</td>
                                             <td>{{ $row->price }}</td>
-                                            <td>{{ $row->categories }}</td>
-                                            <td>{{ $row->tags }}</td>
+                                            <td>{{ $row->categories }}</td>   
+                                            <td>@foreach ($row->ProductTags as $tag)
+                                              {{$tag->tags->name}}
+                                            @endforeach</td>
                                             <td>
                                                 <form method="post" action=" {{ url('products/destroy' . '/' . $row->id) }} ">
                                                     @csrf

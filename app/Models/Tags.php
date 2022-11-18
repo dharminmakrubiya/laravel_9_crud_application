@@ -17,9 +17,7 @@ class Tags extends Model
     ];
 
   
-    public function tag() {
+   
 
-        return $this->belongsTo('App\Models\Tags');
-
-    }
+    
 }

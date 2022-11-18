@@ -92,17 +92,19 @@ class ProductController extends Controller
     
     public function show_product($id ,Product $products)
     {   
-        $products = Product::with('ProductTags.product')->find($id);
-        echo "<pre>";
-        print_r($products->toArray()); 
-        dd($products);
+        $products = Product::with('ProductTags','ProductTags.tags')->find($id);
+        // echo "<pre>";
+        // print_r($products->toArray()); 
+        // foreach($products->ProductTags as $tags){
+        //     print_r($tags->id);
+        // }
+        // die;
         return view('products/show_product',compact('products')); 
     }
     
     public function edit($id,Product $products)
     {
 
-        
         $products = Product::with('productImg')->find($id);
         // echo "<pre>";
         // print_r($products->toArray());

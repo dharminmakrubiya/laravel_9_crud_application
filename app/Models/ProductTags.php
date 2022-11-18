@@ -27,7 +27,10 @@ class ProductTags extends Model
     }
     public function tags() {
 
-        return $this->belongsTo('App\Models\Tags');
+        return $this->belongsTo('App\Models\Tags','tag_id','id');
 
     }
+
+    
+    
 }
